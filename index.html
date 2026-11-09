@@ -61,6 +61,8 @@ main{box-sizing:content-box;max-width:1000px;margin:0 auto;padding-block:20px 64
 .body{min-width:0;display:flex;flex-direction:column;gap:4px}
 .name{font-weight:700;font-size:16px;line-height:1.4;text-wrap:balance}
 .desc{color:var(--muted);font-size:13.5px;line-height:1.55}
+.count{margin-top:auto;align-self:flex-start;font-size:12px;font-weight:600;color:var(--muted);
+  border:1px dashed var(--line);border-radius:8px;padding:3px 9px;font-variant-numeric:tabular-nums}
 .empty{grid-column:1/-1;color:var(--muted);padding:40px 4px;text-align:center;background:var(--surface);border:1px dashed var(--line);border-radius:16px}
 
 @media (max-width:560px){
@@ -106,7 +108,7 @@ main{box-sizing:content-box;max-width:1000px;margin:0 auto;padding-block:20px 64
 
 <script>
 const items = [
-  {t:"사랑의 묘약 메이커", g:"🐈‍⬛", d:"NPC의 호감을 상세하게 나눠 해부해보자! 총 3개의 OOC 포함", c:"ooc", url:"https://claude.ai/artifact/JxTo4UV4E5yf2H5hHj2tzV"},
+  {t:"사랑의 묘약 메이커", g:"🐈‍⬛", d:"NPC의 호감을 상세하게 나눠 해부해보자!", c:"ooc", n:3, url:"https://claude.ai/artifact/JxTo4UV4E5yf2H5hHj2tzV"},
   {t:"마녀의 속마음 실험실", g:"🧪", d:"캐릭터의 속마음을 실험실에서 분석해 보는 OOC", c:"ooc", url:"https://claude.ai/artifact/GDQ91GsNaJSmRvwnhTx5YK"},
   {t:"LOVE DIVE", g:"💘", d:"두 사람의 관계에 깊이 뛰어드는 페어틀", c:"pair", url:"https://claude.ai/artifact/LZoQ6Yq86kzuxvaHmKtBre"},
   {t:"Sleeve — 페어 플레이리스트", g:"🎧", d:"페어를 노래로 엮는 플레이리스트 페어틀", c:"pair", url:"https://claude.ai/artifact/5WmhEvDgaVKaKxm7NDUon9"},
@@ -143,6 +145,7 @@ function render(){
         <span class="name">${esc(i.t)}</span>
         <span class="desc">${esc(i.d)}</span>
       </span>
+      ${i.n ? `<span class="count">${label[i.c]} ${i.n}개 수록</span>` : ""}
     </a></li>`).join("") : `<li class="empty">찾는 작품이 없어요.</li>`;
 }
 render();
