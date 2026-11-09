@@ -72,8 +72,6 @@ main{max-width:1000px;margin:0 auto;padding-block:32px 64px;display:flex;flex-di
 }
 /* soft motion */
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-@keyframes bob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-3px) rotate(-6deg)}}
-.top .em{display:inline-block;animation:bob 3.2s ease-in-out infinite}
 .list li{animation:rise .45s cubic-bezier(.22,1,.36,1) backwards;animation-delay:calc(var(--i) * 50ms)}
 .chip{transition:background .2s,color .2s,border-color .2s,transform .15s}
 .chip:hover{border-color:var(--fg)}
