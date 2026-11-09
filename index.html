@@ -61,8 +61,7 @@ main{box-sizing:content-box;max-width:1000px;margin:0 auto;padding-block:20px 64
 .body{min-width:0;display:flex;flex-direction:column;gap:4px}
 .name{font-weight:700;font-size:16px;line-height:1.4;text-wrap:balance}
 .desc{color:var(--muted);font-size:13.5px;line-height:1.55}
-.count{margin-top:auto;align-self:flex-start;font-size:12px;font-weight:600;color:var(--muted);
-  border:1px dashed var(--line);border-radius:8px;padding:3px 9px;font-variant-numeric:tabular-nums}
+.tag .n{margin-left:6px;padding-left:6px;border-left:1px solid rgb(74 70 54 / .25);font-variant-numeric:tabular-nums}
 .empty{grid-column:1/-1;color:var(--muted);padding:40px 4px;text-align:center;background:var(--surface);border:1px dashed var(--line);border-radius:16px}
 
 @media (max-width:560px){
@@ -139,13 +138,12 @@ function render(){
     <li style="--i:${n}"><a class="card ${i.c}" href="${i.url}" target="_blank" rel="noopener">
       <span class="head">
         <span class="glyph" aria-hidden="true">${i.g}</span>
-        <span class="tag ${i.c}">${label[i.c]}</span>
+        <span class="tag ${i.c}">${label[i.c]}${i.n ? `<span class="n">${i.n}개</span>` : ""}</span>
       </span>
       <span class="body">
         <span class="name">${esc(i.t)}</span>
         <span class="desc">${esc(i.d)}</span>
       </span>
-      ${i.n ? `<span class="count">${label[i.c]} ${i.n}개 수록</span>` : ""}
     </a></li>`).join("") : `<li class="empty">찾는 작품이 없어요.</li>`;
 }
 render();
