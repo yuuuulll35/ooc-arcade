@@ -1,6 +1,6 @@
 # OOC ARCADE
 
-롤플레이용 OOC 테스트·페어틀·도구를 한곳에 모아 분류별로 골라 볼 수 있는 링크 모음 페이지 — 단일 HTML 파일.
+앵라이프를 즐겁게 지낼 수 있는 OOC · 페어틀 · 도구 모음집 — 단일 HTML 파일.
 
 **https://yuuuulll35.github.io/ooc-arcade/**
 
@@ -33,4 +33,5 @@
 | IBM Plex Sans KR | 본문 전체 | © IBM Corp. | Google Fonts |
 | Fredoka | 제목 로고 | © The Fredoka Project Authors | Google Fonts |
 
-이모지는 보는 기기의 시스템 이모지 글꼴로 표시됩니다.
+페이지 안의 이모지는 보는 기기의 시스템 이모지 글꼴로 표시됩니다.
+링크 미리보기 이미지(`og.png`)와 파비콘(`favicon.png`, `apple-touch-icon.png`)의 이모지는 Noto Color Emoji(© Google, SIL Open Font License 1.1)로 만들었습니다.
