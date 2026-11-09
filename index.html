@@ -102,7 +102,6 @@ main{box-sizing:content-box;max-width:1000px;margin:0 auto;padding-block:20px 64
       <button class="chip" id="f-pair" data-f="pair" aria-pressed="false">페어틀 <b></b></button>
       <button class="chip" id="f-tool" data-f="tool" aria-pressed="false">도구함 <b></b></button>
     </div>
-    <label class="search"><input id="q" type="search" placeholder="제목 검색" aria-label="제목 검색"></label>
   </div>
 
   <ol class="list" id="list"></ol>
@@ -121,7 +120,7 @@ const items = [
 ];
 const label = {ooc:"OOC", pair:"페어틀", tool:"도구함"};
 let filter = "all";
-const $list = document.getElementById("list"), $q = document.getElementById("q");
+const $list = document.getElementById("list");
 
 document.querySelectorAll(".chip").forEach(b=>{
   const f=b.dataset.f;
@@ -132,12 +131,10 @@ document.querySelectorAll(".chip").forEach(b=>{
     render();
   });
 });
-$q.addEventListener("input",render);
 
 function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 function render(){
-  const q=$q.value.trim().toLowerCase();
-  const shown=items.filter(i=>(filter==="all"||i.c===filter)&&(!q||(i.t+i.d).toLowerCase().includes(q)));
+  const shown=items.filter(i=>filter==="all"||i.c===filter);
   $list.innerHTML = shown.length ? shown.map((i,n)=>`
     <li style="--i:${n}"><a class="card ${i.c}" href="${i.url}" target="_blank" rel="noopener">
       <span class="head">
