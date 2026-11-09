@@ -2,80 +2,98 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* Layout: 한 줄 리스트형 아카이브. 헤더 → 필터 바 → 행(번호·제목·분류·날짜·→) */
+/* Layout: 따뜻한 메모장. 흰 헤더 바(형광펜 제목) → 웜 페이퍼 바탕 위 필터 패널 → 흰 카드 그리드 */
 :root{
-  --bg:#f6f6f3; --surface:#ffffff; --fg:#1b1d22; --muted:#6b6f78; --line:#e3e3de;
-  --accent:#3b4cc0; --accent-soft:#e8eafb; --pair:#b04a6f; --pair-soft:#f8e7ee;
-  --f-display:"Hahmlet","Gowun Batang",serif;
-  --f-body:"IBM Plex Sans KR",-apple-system,"Apple SD Gothic Neo",sans-serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,monospace;
+  --bg:#f7f6f1; --surface:#ffffff; --fg:#1d1d1b; --muted:#8a877e; --line:#e6e3da;
+  --mark:#ffe14d; --tag-ooc:#fff3b8; --tag-pair:#ffe0e6; --tag-fg:#4a4636;
+  --f-body:"IBM Plex Sans KR",-apple-system,"Apple SD Gothic Neo","Pretendard",sans-serif;
+  --f-emoji:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#14151a; --surface:#1b1d23; --fg:#ececef; --muted:#9a9ea8; --line:#2b2e36;
-  --accent:#9aa6ff; --accent-soft:#252a4a; --pair:#f08fb2; --pair-soft:#3a2230; color-scheme:dark}}
+  --bg:#1b1a17; --surface:#24231f; --fg:#f1efe8; --muted:#a39f93; --line:#36342e;
+  --mark:#a8891c; --tag-ooc:#4a4120; --tag-pair:#4a2c33; --tag-fg:#f1efe8; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#14151a; --surface:#1b1d23; --fg:#ececef; --muted:#9a9ea8; --line:#2b2e36;
-  --accent:#9aa6ff; --accent-soft:#252a4a; --pair:#f08fb2; --pair-soft:#3a2230; color-scheme:dark}
+  --bg:#1b1a17; --surface:#24231f; --fg:#f1efe8; --muted:#a39f93; --line:#36342e;
+  --mark:#a8891c; --tag-ooc:#4a4120; --tag-pair:#4a2c33; --tag-fg:#f1efe8; color-scheme:dark}
 
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.6;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:56px 72px}
-.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:32px}
+html,body{background:var(--bg)}
+body{color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.6}
+.pad{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 
-header{display:flex;flex-direction:column;gap:10px}
-.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-h1{font-family:var(--f-display);font-weight:700;font-size:clamp(30px,6vw,42px);line-height:1.2;margin:0;text-wrap:balance}
-.lead{margin:0;color:var(--muted);max-width:52ch}
+.top{background:var(--surface);border-top:3px solid var(--fg);border-bottom:1px solid var(--line)}
+.top .in{max-width:1000px;margin:0 auto;padding-block:22px;display:flex;align-items:center;gap:10px}
+.top .em{font-family:var(--f-emoji);font-size:26px;line-height:1}
+h1{margin:0;font-size:24px;font-weight:700;letter-spacing:-.01em;line-height:1.3}
+h1 mark{background:linear-gradient(transparent 55%,var(--mark) 55%);color:inherit;padding:0 2px}
+
+main{max-width:1000px;margin:0 auto;padding-block:32px 64px;display:flex;flex-direction:column;gap:24px}
 
 .bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
-  border-block:1px solid var(--line);padding-block:12px}
-.chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{font:inherit;font-size:14px;border:1px solid var(--line);background:transparent;color:var(--muted);
-  padding:5px 14px;border-radius:999px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
-.chip b{font-family:var(--f-mono);font-weight:500;font-size:12px}
-.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
-.chip:focus-visible,.search input:focus-visible,.row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.search{flex:1 1 200px;max-width:260px}
-.search input{width:100%;font:inherit;font-size:14px;color:var(--fg);background:var(--surface);
-  border:1px solid var(--line);border-radius:8px;padding:6px 12px}
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font:inherit;font-size:14px;font-weight:600;border:1px solid var(--line);background:var(--surface);color:var(--fg);
+  padding:6px 16px;border-radius:999px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.chip b{font-weight:500;font-size:12px;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--surface);border-color:var(--fg)}
+.chip[aria-pressed="true"] b{color:inherit;opacity:.7}
+.chip:focus-visible,.search input:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.search{flex:1 1 200px;max-width:280px}
+.search input{width:100%;font:inherit;font-size:14px;color:var(--fg);background:var(--bg);
+  border:1px solid var(--line);border-radius:10px;padding:8px 14px}
+.search input::placeholder{color:var(--muted)}
 
-.list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
 .card{display:flex;flex-direction:column;height:100%;background:var(--surface);border:1px solid var(--line);
-  border-radius:22px;overflow:hidden;color:inherit;text-decoration:none;transition:transform .18s,box-shadow .18s}
-.card:hover{transform:translateY(-3px);box-shadow:0 10px 24px -12px rgb(0 0 0 / .25)}
-.card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.cover{position:relative;aspect-ratio:16/10;max-width:100%;display:grid;place-items:center;
-  background:linear-gradient(140deg,var(--c1),var(--c2));color:#fff}
-.glyph{font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;font-size:60px;line-height:1;
-  filter:drop-shadow(0 6px 8px rgb(0 0 0 / .12));transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
-.card:hover .glyph{transform:scale(1.12) rotate(-6deg)}
-.cover .tag{position:absolute;top:12px;left:12px;background:rgb(255 255 255 / .85);color:#4a4458}
-.cover::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 25% 20%,rgb(255 255 255 / .55),transparent 45%);pointer-events:none}
-.body{min-width:0;display:flex;flex-direction:column;gap:4px;padding:14px 16px 16px;flex:1}
-.name{font-family:var(--f-display);font-weight:500;font-size:17px;line-height:1.35;text-wrap:balance}
-.desc{color:var(--muted);font-size:13.5px;line-height:1.5}
-.tag{font-size:12px;font-weight:600;padding:2px 10px;border-radius:999px;white-space:nowrap}
-.empty{grid-column:1/-1;color:var(--muted);padding:32px 4px;text-align:center}
+  border-radius:16px;padding:18px;gap:14px;color:inherit;text-decoration:none;transition:transform .18s,box-shadow .18s,border-color .18s}
+.card:hover{transform:translateY(-3px);border-color:var(--fg);box-shadow:0 4px 0 var(--fg)}
+.card:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
+.head{display:flex;justify-content:space-between;align-items:flex-start}
+.glyph{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;background:var(--bg);
+  font-family:var(--f-emoji);font-size:30px;line-height:1;transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
+.card:hover .glyph{transform:rotate(-8deg) scale(1.08)}
+.tag{font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap;color:var(--tag-fg)}
+.tag.ooc{background:var(--tag-ooc)}
+.tag.pair{background:var(--tag-pair)}
+.body{min-width:0;display:flex;flex-direction:column;gap:4px}
+.name{font-weight:700;font-size:16px;line-height:1.4;text-wrap:balance}
+.desc{color:var(--muted);font-size:13.5px;line-height:1.55}
+.empty{grid-column:1/-1;color:var(--muted);padding:40px 4px;text-align:center;background:var(--surface);border:1px dashed var(--line);border-radius:16px}
 
 @media (max-width:560px){
-  .list{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-  .body{padding:12px}
-  .name{font-size:15px}
+  h1{font-size:20px}
+  .list{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .card{padding:14px;gap:10px}
+  .glyph{width:46px;height:46px;font-size:25px;border-radius:12px}
+  .name{font-size:14.5px}
   .desc{display:none}
-  .glyph{font-size:46px}
   .search{max-width:none}
 }
-@media (prefers-reduced-motion:reduce){.card,.glyph{transition:none}.card:hover,.card:hover .glyph{transform:none}}
+/* soft motion */
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes sweep{from{background-size:0% 100%}to{background-size:100% 100%}}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-3px) rotate(-6deg)}}
+h1 mark{background-repeat:no-repeat;background-size:100% 100%;animation:sweep .7s .2s cubic-bezier(.65,0,.35,1) backwards}
+.top .em{display:inline-block;animation:bob 3.2s ease-in-out infinite}
+.list li{animation:rise .45s cubic-bezier(.22,1,.36,1) backwards;animation-delay:calc(var(--i) * 50ms)}
+.chip{transition:background .2s,color .2s,border-color .2s,transform .15s}
+.chip:hover{border-color:var(--fg)}
+.chip:active{transform:scale(.95)}
+.search input{transition:border-color .2s,box-shadow .2s}
+.search input:focus{border-color:var(--fg);box-shadow:0 0 0 3px var(--line)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.card:hover,.card:hover .glyph{transform:none}}
 </style>
 
-<div class="wrap">
-  <header>
-    <span class="eyebrow">Archive · 2026</span>
-    <h1>OOC 아케이드</h1>
-  </header>
+<header class="top pad">
+  <div class="in">
+    <span class="em" aria-hidden="true">🕹️</span>
+    <h1>OOC · <mark>아케이드</mark></h1>
+  </div>
+</header>
 
+<main class="pad">
   <div class="bar">
     <div class="chips" role="group" aria-label="분류">
       <button class="chip" id="f-all" data-f="all" aria-pressed="true">전체 <b></b></button>
@@ -86,18 +104,17 @@ h1{font-family:var(--f-display);font-weight:700;font-size:clamp(30px,6vw,42px);l
   </div>
 
   <ol class="list" id="list"></ol>
-
-</div>
+</main>
 
 <script>
 const items = [
-  {t:"마음 달이는 다락방", g:"🐈‍⬛", col:["#e4dcff","#c9b8ff"], d:"마녀 고양이와 함께 NPC의 마음을 사랑의 묘약으로 달이는 게임", c:"ooc", date:"2026.11.08", url:"https://claude.ai/artifact/JxTo4UV4E5yf2H5hHj2tzV"},
-  {t:"마녀의 속마음 실험실", g:"🧪", col:["#d6f5e6","#a9e4c8"], d:"캐릭터의 속마음을 실험실에서 분석해 보는 OOC", c:"ooc", date:"2026.11.04", url:"https://claude.ai/artifact/GDQ91GsNaJSmRvwnhTx5YK"},
-  {t:"LOVE DIVE", g:"💘", col:["#ffe0ea","#ffb8cf"], d:"두 사람의 관계에 깊이 뛰어드는 페어틀", c:"pair", date:"2026.10.28", url:"https://claude.ai/artifact/LZoQ6Yq86kzuxvaHmKtBre"},
-  {t:"Sleeve — 페어 플레이리스트", g:"🎧", col:["#dcecff","#b4d4fb"], d:"페어를 노래로 엮는 플레이리스트 페어틀", c:"pair", date:"2026.10.17", url:"https://claude.ai/artifact/5WmhEvDgaVKaKxm7NDUon9"},
-  {t:"스카우트 스튜디오", g:"🌟", col:["#fff1cf","#ffd88f"], d:"캐릭터를 스카우트 프로필로 정리하는 OOC", c:"ooc", date:"2026.10.15", url:"https://claude.ai/artifact/6jgAG78h5UoQ36fDphpMh3"},
-  {t:"연선 沿線 · Crossroads", g:"🚃", col:["#d9f1fb","#a7dcf2"], d:"두 사람이 엇갈리고 만나는 노선 페어틀", c:"pair", date:"2026.10.13", url:"https://claude.ai/artifact/GRz3gK2irDd89jnJZTaKW9"},
-  {t:"MIND ARCHIVE · 뇌구조 열람실", g:"🧠", col:["#f6e2f7","#e6bfe9"], d:"캐릭터의 뇌구조를 열람하는 OOC", c:"ooc", date:"2026.10.13", url:"https://claude.ai/artifact/5EGqJqWNSFiREwW9KZXKw5"},
+  {t:"마음 달이는 다락방", g:"🐈‍⬛", d:"마녀 고양이와 함께 NPC의 마음을 사랑의 묘약으로 달이는 게임", c:"ooc", url:"https://claude.ai/artifact/JxTo4UV4E5yf2H5hHj2tzV"},
+  {t:"마녀의 속마음 실험실", g:"🧪", d:"캐릭터의 속마음을 실험실에서 분석해 보는 OOC", c:"ooc", url:"https://claude.ai/artifact/GDQ91GsNaJSmRvwnhTx5YK"},
+  {t:"LOVE DIVE", g:"💘", d:"두 사람의 관계에 깊이 뛰어드는 페어틀", c:"pair", url:"https://claude.ai/artifact/LZoQ6Yq86kzuxvaHmKtBre"},
+  {t:"Sleeve — 페어 플레이리스트", g:"🎧", d:"페어를 노래로 엮는 플레이리스트 페어틀", c:"pair", url:"https://claude.ai/artifact/5WmhEvDgaVKaKxm7NDUon9"},
+  {t:"스카우트 스튜디오", g:"🌟", d:"캐릭터를 스카우트 프로필로 정리하는 OOC", c:"ooc", url:"https://claude.ai/artifact/6jgAG78h5UoQ36fDphpMh3"},
+  {t:"연선 沿線 · Crossroads", g:"🚃", d:"두 사람이 엇갈리고 만나는 노선 페어틀", c:"pair", url:"https://claude.ai/artifact/GRz3gK2irDd89jnJZTaKW9"},
+  {t:"MIND ARCHIVE · 뇌구조 열람실", g:"🧠", d:"캐릭터의 뇌구조를 열람하는 OOC", c:"ooc", url:"https://claude.ai/artifact/5EGqJqWNSFiREwW9KZXKw5"},
 ];
 const label = {ooc:"OOC", pair:"페어틀"};
 let filter = "all";
@@ -118,11 +135,11 @@ function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;
 function render(){
   const q=$q.value.trim().toLowerCase();
   const shown=items.filter(i=>(filter==="all"||i.c===filter)&&(!q||(i.t+i.d).toLowerCase().includes(q)));
-  $list.innerHTML = shown.length ? shown.map(i=>`
-    <li><a class="card" href="${i.url}" target="_blank" rel="noopener">
-      <span class="cover" style="--c1:${i.col[0]};--c2:${i.col[1]}">
-        <span class="tag">${label[i.c]}</span>
-        <span class="glyph" aria-hidden="true">${esc(i.g)}</span>
+  $list.innerHTML = shown.length ? shown.map((i,n)=>`
+    <li style="--i:${n}"><a class="card" href="${i.url}" target="_blank" rel="noopener">
+      <span class="head">
+        <span class="glyph" aria-hidden="true">${i.g}</span>
+        <span class="tag ${i.c}">${label[i.c]}</span>
       </span>
       <span class="body">
         <span class="name">${esc(i.t)}</span>
