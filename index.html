@@ -43,13 +43,16 @@ h1{font-family:var(--f-display);font-weight:700;font-size:clamp(30px,6vw,42px);l
 
 .list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
 .card{display:flex;flex-direction:column;height:100%;background:var(--surface);border:1px solid var(--line);
-  border-radius:14px;overflow:hidden;color:inherit;text-decoration:none;transition:transform .18s,box-shadow .18s}
+  border-radius:22px;overflow:hidden;color:inherit;text-decoration:none;transition:transform .18s,box-shadow .18s}
 .card:hover{transform:translateY(-3px);box-shadow:0 10px 24px -12px rgb(0 0 0 / .25)}
 .card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .cover{position:relative;aspect-ratio:16/10;max-width:100%;display:grid;place-items:center;
   background:linear-gradient(140deg,var(--c1),var(--c2));color:#fff}
-.glyph{font-family:var(--f-display);font-weight:700;font-size:44px;line-height:1;opacity:.92;text-shadow:0 2px 12px rgb(0 0 0 / .18)}
-.cover .tag{position:absolute;top:10px;left:10px;background:rgb(255 255 255 / .9);color:#1b1d22}
+.glyph{font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;font-size:60px;line-height:1;
+  filter:drop-shadow(0 6px 8px rgb(0 0 0 / .12));transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
+.card:hover .glyph{transform:scale(1.12) rotate(-6deg)}
+.cover .tag{position:absolute;top:12px;left:12px;background:rgb(255 255 255 / .85);color:#4a4458}
+.cover::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 25% 20%,rgb(255 255 255 / .55),transparent 45%);pointer-events:none}
 .body{min-width:0;display:flex;flex-direction:column;gap:4px;padding:14px 16px 16px;flex:1}
 .name{font-family:var(--f-display);font-weight:500;font-size:17px;line-height:1.35;text-wrap:balance}
 .desc{color:var(--muted);font-size:13.5px;line-height:1.5}
@@ -61,10 +64,10 @@ h1{font-family:var(--f-display);font-weight:700;font-size:clamp(30px,6vw,42px);l
   .body{padding:12px}
   .name{font-size:15px}
   .desc{display:none}
-  .glyph{font-size:34px}
+  .glyph{font-size:46px}
   .search{max-width:none}
 }
-@media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
+@media (prefers-reduced-motion:reduce){.card,.glyph{transition:none}.card:hover,.card:hover .glyph{transform:none}}
 </style>
 
 <div class="wrap">
@@ -88,13 +91,13 @@ h1{font-family:var(--f-display);font-weight:700;font-size:clamp(30px,6vw,42px);l
 
 <script>
 const items = [
-  {t:"마음 달이는 다락방", g:"다락", col:["#2a1f4e","#6b4fb3"], d:"마녀 고양이와 함께 NPC의 마음을 사랑의 묘약으로 달이는 게임", c:"ooc", date:"2026.11.08", url:"https://claude.ai/artifact/JxTo4UV4E5yf2H5hHj2tzV"},
-  {t:"마녀의 속마음 실험실", g:"실험", col:["#1f4a3f","#4fa585"], d:"캐릭터의 속마음을 실험실에서 분석해 보는 OOC", c:"ooc", date:"2026.11.04", url:"https://claude.ai/artifact/GDQ91GsNaJSmRvwnhTx5YK"},
-  {t:"LOVE DIVE", g:"LD", col:["#a8326a","#f27a9e"], d:"두 사람의 관계에 깊이 뛰어드는 페어틀", c:"pair", date:"2026.10.28", url:"https://claude.ai/artifact/LZoQ6Yq86kzuxvaHmKtBre"},
-  {t:"Sleeve — 페어 플레이리스트", g:"♪", col:["#22303f","#5b7a99"], d:"페어를 노래로 엮는 플레이리스트 페어틀", c:"pair", date:"2026.10.17", url:"https://claude.ai/artifact/5WmhEvDgaVKaKxm7NDUon9"},
-  {t:"스카우트 스튜디오", g:"SCOUT", col:["#b8561f","#eea34a"], d:"캐릭터를 스카우트 프로필로 정리하는 OOC", c:"ooc", date:"2026.10.15", url:"https://claude.ai/artifact/6jgAG78h5UoQ36fDphpMh3"},
-  {t:"연선 沿線 · Crossroads", g:"沿線", col:["#26407a","#5d86c9"], d:"두 사람이 엇갈리고 만나는 노선 페어틀", c:"pair", date:"2026.10.13", url:"https://claude.ai/artifact/GRz3gK2irDd89jnJZTaKW9"},
-  {t:"MIND ARCHIVE · 뇌구조 열람실", g:"MIND", col:["#3d3d46","#8b8b99"], d:"캐릭터의 뇌구조를 열람하는 OOC", c:"ooc", date:"2026.10.13", url:"https://claude.ai/artifact/5EGqJqWNSFiREwW9KZXKw5"},
+  {t:"마음 달이는 다락방", g:"🐈‍⬛", col:["#e4dcff","#c9b8ff"], d:"마녀 고양이와 함께 NPC의 마음을 사랑의 묘약으로 달이는 게임", c:"ooc", date:"2026.11.08", url:"https://claude.ai/artifact/JxTo4UV4E5yf2H5hHj2tzV"},
+  {t:"마녀의 속마음 실험실", g:"🧪", col:["#d6f5e6","#a9e4c8"], d:"캐릭터의 속마음을 실험실에서 분석해 보는 OOC", c:"ooc", date:"2026.11.04", url:"https://claude.ai/artifact/GDQ91GsNaJSmRvwnhTx5YK"},
+  {t:"LOVE DIVE", g:"💘", col:["#ffe0ea","#ffb8cf"], d:"두 사람의 관계에 깊이 뛰어드는 페어틀", c:"pair", date:"2026.10.28", url:"https://claude.ai/artifact/LZoQ6Yq86kzuxvaHmKtBre"},
+  {t:"Sleeve — 페어 플레이리스트", g:"🎧", col:["#dcecff","#b4d4fb"], d:"페어를 노래로 엮는 플레이리스트 페어틀", c:"pair", date:"2026.10.17", url:"https://claude.ai/artifact/5WmhEvDgaVKaKxm7NDUon9"},
+  {t:"스카우트 스튜디오", g:"🌟", col:["#fff1cf","#ffd88f"], d:"캐릭터를 스카우트 프로필로 정리하는 OOC", c:"ooc", date:"2026.10.15", url:"https://claude.ai/artifact/6jgAG78h5UoQ36fDphpMh3"},
+  {t:"연선 沿線 · Crossroads", g:"🚃", col:["#d9f1fb","#a7dcf2"], d:"두 사람이 엇갈리고 만나는 노선 페어틀", c:"pair", date:"2026.10.13", url:"https://claude.ai/artifact/GRz3gK2irDd89jnJZTaKW9"},
+  {t:"MIND ARCHIVE · 뇌구조 열람실", g:"🧠", col:["#f6e2f7","#e6bfe9"], d:"캐릭터의 뇌구조를 열람하는 OOC", c:"ooc", date:"2026.10.13", url:"https://claude.ai/artifact/5EGqJqWNSFiREwW9KZXKw5"},
 ];
 const label = {ooc:"OOC", pair:"페어틀"};
 let filter = "all";
