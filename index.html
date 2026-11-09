@@ -2,7 +2,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Jua&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Fredoka:wght@600&display=swap" rel="stylesheet">
 <style>
 /* Layout: 따뜻한 메모장. 흰 헤더 바(형광펜 제목) → 웜 페이퍼 바탕 위 필터 패널 → 흰 카드 그리드 */
 :root{
@@ -21,8 +21,7 @@ body{color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.6}
 .top{background:var(--surface);border-top:3px solid var(--fg);border-bottom:1px solid var(--line)}
 .top .in{max-width:1000px;margin:0 auto;padding-block:22px;display:flex;align-items:center;gap:10px}
 .top .em{font-family:var(--f-emoji);font-size:30px;line-height:1}
-h1{margin:0;font-family:"Jua",var(--f-body);font-weight:400;font-size:30px;letter-spacing:.01em;line-height:1.25}
-h1 mark{background-image:linear-gradient(transparent 58%,var(--mark) 58%,var(--mark) 92%,transparent 92%);color:inherit;padding:0 6px;border-radius:4px}
+h1{margin:0;font-family:"Fredoka","Jua",var(--f-body);font-weight:600;font-size:30px;letter-spacing:.02em;line-height:1.25}
 
 main{max-width:1000px;margin:0 auto;padding-block:32px 64px;display:flex;flex-direction:column;gap:24px}
 
@@ -68,9 +67,7 @@ main{max-width:1000px;margin:0 auto;padding-block:32px 64px;display:flex;flex-di
 }
 /* soft motion */
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-@keyframes sweep{from{background-size:0% 100%}to{background-size:100% 100%}}
 @keyframes bob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-3px) rotate(-6deg)}}
-h1 mark{background-repeat:no-repeat;background-size:100% 100%;animation:sweep .7s .2s cubic-bezier(.65,0,.35,1) backwards}
 .top .em{display:inline-block;animation:bob 3.2s ease-in-out infinite}
 .list li{animation:rise .45s cubic-bezier(.22,1,.36,1) backwards;animation-delay:calc(var(--i) * 50ms)}
 .chip{transition:background .2s,color .2s,border-color .2s,transform .15s}
@@ -84,7 +81,7 @@ h1 mark{background-repeat:no-repeat;background-size:100% 100%;animation:sweep .7
 <header class="top pad">
   <div class="in">
     <span class="em" aria-hidden="true">🐣</span>
-    <h1><mark>OOC 아케이드</mark></h1>
+    <h1>OOC ARCADE</h1>
   </div>
 </header>
 
