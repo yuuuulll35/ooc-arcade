@@ -7,7 +7,7 @@
 /* Layout: 따뜻한 메모장. 흰 헤더 바(형광펜 제목) → 웜 페이퍼 바탕 위 필터 패널 → 흰 카드 그리드 */
 :root{
   --bg:#f7f6f1; --surface:#ffffff; --fg:#1d1d1b; --muted:#8a877e; --line:#e6e3da;
-  --mark:#ffe14d; --tag-ooc:#fff3b8; --tag-pair:#ffe0e6; --tag-fg:#4a4636;
+  --mark:#ffe14d; --tag-ooc:#fff3b8; --tag-pair:#ffe0e6; --tag-tool:#dcefff; --tag-fg:#4a4636;
   --f-body:"IBM Plex Sans KR",-apple-system,"Apple SD Gothic Neo","Pretendard",sans-serif;
   --f-emoji:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
 }
@@ -55,9 +55,11 @@ main{box-sizing:content-box;max-width:1000px;margin:0 auto;padding-block:20px 64
 @keyframes hop{0%{transform:none}40%{transform:translateY(-5px) scale(1.06)}100%{transform:none}}
 .card.ooc{--tint:var(--tag-ooc)}
 .card.pair{--tint:var(--tag-pair)}
+.card.tool{--tint:var(--tag-tool)}
 .tag{font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap;color:var(--tag-fg)}
 .tag.ooc{background:var(--tag-ooc)}
 .tag.pair{background:var(--tag-pair)}
+.tag.tool{background:var(--tag-tool)}
 .body{min-width:0;display:flex;flex-direction:column;gap:4px}
 .name{font-weight:700;font-size:16px;line-height:1.4;text-wrap:balance}
 .desc{color:var(--muted);font-size:13.5px;line-height:1.55}
@@ -98,6 +100,7 @@ main{box-sizing:content-box;max-width:1000px;margin:0 auto;padding-block:20px 64
       <button class="chip" id="f-all" data-f="all" aria-pressed="true">전체 <b></b></button>
       <button class="chip" id="f-ooc" data-f="ooc" aria-pressed="false">OOC <b></b></button>
       <button class="chip" id="f-pair" data-f="pair" aria-pressed="false">페어틀 <b></b></button>
+      <button class="chip" id="f-tool" data-f="tool" aria-pressed="false">도구함 <b></b></button>
     </div>
     <label class="search"><input id="q" type="search" placeholder="제목 검색" aria-label="제목 검색"></label>
   </div>
@@ -112,7 +115,7 @@ const items = [
   {t:"Sleeve — 페어 플레이리스트", g:"🎧", d:"페어를 노래로 엮는 플레이리스트 페어틀", c:"pair", url:"https://claude.ai/artifact/5WmhEvDgaVKaKxm7NDUon9"},
   {t:"MIND ARCHIVE", g:"🧠", d:"두 사람의 생각과 뇌구조를 확인하는 열람실", c:"ooc", n:3, url:"https://yuuuulll35.github.io/mind-archive/"},
 ];
-const label = {ooc:"OOC", pair:"페어틀"};
+const label = {ooc:"OOC", pair:"페어틀", tool:"도구함"};
 let filter = "all";
 const $list = document.getElementById("list"), $q = document.getElementById("q");
 
