@@ -28,6 +28,10 @@ h1 mark{background:linear-gradient(transparent 62%,var(--mark) 62%);color:inheri
 .handle:focus-visible{outline:2px solid var(--fg);outline-offset:2px;border-radius:4px}
 main{box-sizing:content-box;max-width:1000px;margin:0 auto;padding-block:20px 64px;display:flex;flex-direction:column;gap:24px}
 
+.notice{display:flex;gap:10px;align-items:flex-start;background:#fff8d6;border:1px solid #f1e3a3;border-radius:16px;padding:14px 18px;color:#4a4636;font-size:14px;line-height:1.7}
+.notice .pin{font-family:var(--f-emoji);font-size:16px;line-height:1.5}
+.notice ol{margin:0;padding-left:1.2em;display:flex;flex-direction:column}
+.notice li::marker{color:#a8914a;font-weight:600}
 .bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
   background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
 .chips{display:flex;gap:8px;flex-wrap:wrap}
@@ -95,6 +99,14 @@ main{box-sizing:content-box;max-width:1000px;margin:0 auto;padding-block:20px 64
 </header>
 
 <main class="pad">
+  <section class="notice" aria-label="공지사항">
+    <span class="pin" aria-hidden="true">📌</span>
+    <ol>
+      <li>앵라이프를 즐겁게 지낼 수 있는 다양한 컨텐츠를 올립니다.</li>
+      <li>모든 페이지는 클로드를 사용해서 제작합니다.</li>
+      <li>자유롭고 즐겁게 사용해주세요~!</li>
+    </ol>
+  </section>
   <div class="bar">
     <div class="chips" role="group" aria-label="분류">
       <button class="chip" id="f-all" data-f="all" aria-pressed="true">전체 <b></b></button>
