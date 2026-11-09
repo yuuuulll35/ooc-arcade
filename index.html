@@ -24,11 +24,13 @@ h1{margin:0;font-family:"Fredoka","Jua",var(--f-body);font-weight:600;font-size:
 h1 mark{background:linear-gradient(transparent 62%,var(--mark) 62%);color:inherit;padding:0 3px}
 
 .handle{margin-left:auto;font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s}
-.handle:hover{color:var(--fg)}
 .handle:focus-visible{outline:2px solid var(--fg);outline-offset:2px;border-radius:4px}
 main{box-sizing:content-box;max-width:1000px;margin:0 auto;padding-block:20px 64px;display:flex;flex-direction:column;gap:24px}
 
-.notice{display:flex;gap:10px;align-items:flex-start;background:#fff8d6;border:1px solid #f1e3a3;border-radius:16px;padding:14px 18px;color:#4a4636;font-size:14px;line-height:1.7}
+.notice .links{margin:8px 0 0;display:flex;gap:8px;align-items:center;font-size:13px;color:#a8914a}
+.notice .links a{color:#4a4636;font-weight:600;text-decoration:underline;text-decoration-color:#d9c57a;text-underline-offset:3px}
+.notice .links a:hover{text-decoration-color:currentColor}
+.notice{display:flex;flex-direction:column;background:#fff8d6;border:1px solid #f1e3a3;border-radius:16px;padding:14px 18px;color:#4a4636;font-size:14px;line-height:1.7}
 .notice .pin{font-family:var(--f-emoji);font-size:16px;line-height:1.5}
 .notice ol{margin:0;padding-left:1.2em;display:flex;flex-direction:column}
 .notice li::marker{color:#a8914a;font-weight:600}
@@ -94,7 +96,7 @@ main{box-sizing:content-box;max-width:1000px;margin:0 auto;padding-block:20px 64
   <div class="in">
     <span class="em" aria-hidden="true">🐣</span>
     <h1><mark>OOC ARCADE</mark></h1>
-    <a class="handle" href="https://x.com/gimyunseul92364" target="_blank" rel="noopener">@gimyunseul92364</a>
+    <span class="handle">@gimyunseul92364</span>
   </div>
 </header>
 
@@ -105,6 +107,7 @@ main{box-sizing:content-box;max-width:1000px;margin:0 auto;padding-block:20px 64
       <li>모든 페이지는 클로드를 사용해서 제작합니다.</li>
       <li>자유롭고 즐겁게 사용해주세요~!</li>
     </ol>
+    <p class="links"><a href="https://x.com/gimyunseul92364" target="_blank" rel="noopener">X</a><span aria-hidden="true">/</span><a href="https://www.postype.com/profile/@k5kqzq?utm_source=link&amp;utm_medium=social&amp;utm_content=if_sh_wl&amp;utm_campaign=profile" target="_blank" rel="noopener">포스타입</a></p>
   </section>
   <div class="bar">
     <div class="chips" role="group" aria-label="분류">
