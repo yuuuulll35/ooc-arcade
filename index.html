@@ -5,12 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>OOC ARCADE</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%A3%3C/text%3E%3C/svg%3E">
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Fredoka:wght@600&display=swap" rel="stylesheet">
 <style>
-/* Layout: 따뜻한 메모장. 흰 헤더 바(형광펜 제목) → 웜 페이퍼 바탕 위 필터 패널 → 흰 카드 그리드 */
 :root{
   --bg:#f7f6f1; --surface:#ffffff; --fg:#1d1d1b; --muted:#8a877e; --line:#e6e3da;
   --mark:#ffe14d; --tag-ooc:#fff3b8; --tag-pair:#ffe0e6; --tag-tool:#dcefff; --tag-fg:#4a4636;
@@ -29,7 +27,7 @@ body{color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.6}
 
 .top .in{box-sizing:content-box;max-width:1000px;margin:0 auto;padding-block:32px 0;display:flex;align-items:center;gap:8px}
 .top .em{font-family:var(--f-emoji);font-size:22px;line-height:1}
-h1{margin:0;font-family:"Fredoka","Jua",var(--f-body);font-weight:600;font-size:22px;letter-spacing:.02em;line-height:1.25}
+h1{margin:0;font-family:"Fredoka",var(--f-body);font-weight:600;font-size:22px;letter-spacing:.02em;line-height:1.25}
 h1 mark{background:linear-gradient(transparent 62%,var(--mark) 62%);color:inherit;padding:0 3px}
 
 .handle{margin-left:auto;font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s}
@@ -53,11 +51,7 @@ main{box-sizing:content-box;max-width:1000px;margin:0 auto;padding-block:20px 64
 .chip b{font-weight:500;font-size:12px;color:var(--muted)}
 .chip[aria-pressed="true"]{background:var(--fg);color:var(--surface);border-color:var(--fg)}
 .chip[aria-pressed="true"] b{color:inherit;opacity:.7}
-.chip:focus-visible,.search input:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
-.search{flex:1 1 200px;max-width:280px}
-.search input{width:100%;font:inherit;font-size:14px;color:var(--fg);background:var(--bg);
-  border:1px solid var(--line);border-radius:10px;padding:8px 14px}
-.search input::placeholder{color:var(--muted)}
+.chip:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 
 .list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
 .card{display:flex;flex-direction:column;height:100%;background:var(--surface);border:1px solid var(--line);
@@ -90,16 +84,12 @@ main{box-sizing:content-box;max-width:1000px;margin:0 auto;padding-block:20px 64
   .glyph{width:46px;height:46px;font-size:25px;border-radius:12px}
   .name{font-size:14.5px}
   .desc{display:none}
-  .search{max-width:none}
-}
-/* soft motion */
+  }
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .list li{animation:rise .45s cubic-bezier(.22,1,.36,1) backwards;animation-delay:calc(var(--i) * 50ms)}
 .chip{transition:background .2s,color .2s,border-color .2s,transform .15s}
 .chip:hover{border-color:var(--fg)}
 .chip:active{transform:scale(.95)}
-.search input{transition:border-color .2s,box-shadow .2s}
-.search input:focus{border-color:var(--fg);box-shadow:0 0 0 3px var(--line)}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.card:hover,.card:hover .glyph{transform:none}}
 </style>
 </head>
