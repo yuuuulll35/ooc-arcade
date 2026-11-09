@@ -34,6 +34,7 @@
 *{box-sizing:border-box}
 html,body{margin:0}
 :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{word-break:keep-all;overflow-wrap:break-word}
 ::selection{background:#f4c20d;color:#fff}
 html,body{background:var(--bg)}
 body{color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.6}
@@ -97,7 +98,10 @@ main{box-sizing:content-box;max-width:1000px;margin:0 auto;padding-block:20px 64
   .card{padding:14px;gap:10px}
   .glyph{width:46px;height:46px;font-size:25px;border-radius:12px}
   .name{font-size:14.5px}
-  .desc{display:none}
+  .desc{font-size:12.5px;line-height:1.5}
+  .bar{padding:12px}
+  .chips{gap:6px}
+  .chip{padding:6px 12px;font-size:13.5px}
   }
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .list li{animation:rise .45s cubic-bezier(.22,1,.36,1) backwards;animation-delay:calc(var(--i) * 50ms)}
