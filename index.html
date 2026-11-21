@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OOC ARCADE</title>
+<meta name="description" content="앵라이프를 즐겁게 지낼 수 있는 OOC · 페어틀 · 도구 모음집">
+<meta property="og:type" content="website">
+<meta property="og:title" content="OOC ARCADE">
+<meta property="og:description" content="앵라이프를 즐겁게 지낼 수 있는 OOC · 페어틀 · 도구 모음집">
+<meta property="og:url" content="https://yuuuulll35.github.io/ooc-arcade/">
+<meta property="og:image" content="https://yuuuulll35.github.io/ooc-arcade/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OOC ARCADE">
+<meta name="twitter:description" content="앵라이프를 즐겁게 지낼 수 있는 OOC · 페어틀 · 도구 모음집">
+<meta name="twitter:image" content="https://yuuuulll35.github.io/ooc-arcade/og.png">
+<meta name="theme-color" content="#f7f6f1">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Fredoka:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f6f1; --surface:#ffffff; --fg:#1d1d1b; --muted:#8a877e; --line:#e6e3da;
+  --mark:#ffe14d; --tag-ooc:#fff3b8; --tag-pair:#ffe0e6; --tag-tool:#dcefff; --tag-fg:#4a4636;
+  --f-body:"IBM Plex Sans KR",-apple-system,"Apple SD Gothic Neo","Pretendard",sans-serif;
+  --f-emoji:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+}
+:root{color-scheme:light}
+
+*{box-sizing:border-box}
+html,body{margin:0}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{word-break:keep-all;overflow-wrap:break-word}
+::selection{background:#f4c20d;color:#fff}
+html,body{background:var(--bg)}
+body{color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.6}
+.pad{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+.top .in{box-sizing:content-box;max-width:1000px;margin:0 auto;padding-block:32px 0;display:flex;align-items:center;gap:8px}
+.top .em{font-family:var(--f-emoji);font-size:22px;line-height:1}
+h1{margin:0;font-family:"Fredoka",var(--f-body);font-weight:600;font-size:22px;letter-spacing:.02em;line-height:1.25}
+h1 mark{background:linear-gradient(transparent 62%,var(--mark) 62%);color:inherit;padding:0 3px}
+
+.handle{margin-left:auto;font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s}
+.handle:focus-visible{outline:2px solid var(--fg);outline-offset:2px;border-radius:4px}
+main{box-sizing:content-box;max-width:1000px;margin:0 auto;padding-block:20px 64px;display:flex;flex-direction:column;gap:24px}
+
+.notice .links{display:flex;gap:8px;order:2;flex-shrink:0}
+.ico{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:#fff;border:1px solid #f1e3a3;color:#4a4636;transition:background .2s,color .2s}
+.ico svg{width:16px;height:16px}
+.ico:hover{background:#4a4636;color:#fff8d6}
+.ico:focus-visible{outline:2px solid #4a4636;outline-offset:2px}
+.notice{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;background:#fff8d6;border:1px solid #f1e3a3;border-radius:16px;padding:14px 18px;color:#4a4636;font-size:14px;line-height:1.7}
+.notice .pin{font-family:var(--f-emoji);font-size:16px;line-height:1.5}
+.notice ol{margin:0;padding-left:1.2em;display:flex;flex-direction:column}
+.notice li::marker{color:#a8914a;font-weight:600}
+.bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font:inherit;font-size:14px;font-weight:600;border:1px solid var(--line);background:var(--surface);color:var(--fg);
+  padding:6px 16px;border-radius:999px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.chip b{font-weight:500;font-size:12px;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--surface);border-color:var(--fg)}
+.chip[aria-pressed="true"] b{color:inherit;opacity:.7}
+.chip:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+
+.list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.card{display:flex;flex-direction:column;height:100%;background:var(--surface);border:1px solid var(--line);
+  border-radius:16px;padding:18px;gap:14px;color:inherit;text-decoration:none;transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1)}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 28px -14px rgb(90 72 30 / .28)}
+.card:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
+.head{display:flex;justify-content:space-between;align-items:flex-start}
+.glyph{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;background:var(--bg);
+  font-family:var(--f-emoji);font-size:30px;line-height:1;transition:background .35s}
+.card:hover .glyph{background:var(--tint)}
+.card:hover .glyph{animation:hop .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes hop{0%{transform:none}40%{transform:translateY(-5px) scale(1.06)}100%{transform:none}}
+.card.ooc{--tint:var(--tag-ooc)}
+.card.pair{--tint:var(--tag-pair)}
+.card.tool{--tint:var(--tag-tool)}
+.tag{font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap;color:var(--tag-fg)}
+.tag.ooc{background:var(--tag-ooc)}
+.tag.pair{background:var(--tag-pair)}
+.tag.tool{background:var(--tag-tool)}
+.body{min-width:0;display:flex;flex-direction:column;gap:4px}
+.name{font-weight:700;font-size:16px;line-height:1.4;text-wrap:balance}
+.desc{color:var(--muted);font-size:13.5px;line-height:1.55}
+.tag .n{margin-left:6px;padding-left:6px;border-left:1px solid rgb(74 70 54 / .25);font-variant-numeric:tabular-nums}
+.empty{grid-column:1/-1;color:var(--muted);padding:40px 4px;text-align:center;background:var(--surface);border:1px dashed var(--line);border-radius:16px}
+
+@media (max-width:560px){
+  h1{font-size:20px}
+  .list{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .card{padding:14px;gap:10px}
+  .glyph{width:46px;height:46px;font-size:25px;border-radius:12px}
+  .name{font-size:14.5px}
+  .desc{font-size:12.5px;line-height:1.5}
+  .bar{padding:12px}
+  .chips{gap:6px}
+  .chip{padding:6px 12px;font-size:13.5px}
+  }
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.list li{animation:rise .45s cubic-bezier(.22,1,.36,1) backwards;animation-delay:calc(var(--i) * 50ms)}
+.chip{transition:background .2s,color .2s,border-color .2s,transform .15s}
+.chip:hover{border-color:var(--fg)}
+.chip:active{transform:scale(.95)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.card:hover,.card:hover .glyph{transform:none}}
+</style>
+</head>
+<body>
+
+<header class="top pad">
+  <div class="in">
+    <span class="em" aria-hidden="true">🐣</span>
+    <h1><mark>OOC ARCADE</mark></h1>
+    <span class="handle">@gimyunseul92364</span>
+  </div>
+</header>
+
+<main class="pad">
+  <section class="notice" aria-label="공지사항">
+    <div class="links">
+      <a class="ico" href="https://x.com/gimyunseul92364" target="_blank" rel="noopener" aria-label="X" title="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.36 5.77L17.75 3Zm-1.08 16.17h1.7L7.4 4.74H5.58l11.09 14.43Z"/></svg></a>
+      <a class="ico" href="https://www.postype.com/profile/@k5kqzq?utm_source=link&amp;utm_medium=social&amp;utm_content=if_sh_wl&amp;utm_campaign=profile" target="_blank" rel="noopener" aria-label="포스타입" title="포스타입"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h6.2C17 3 19.5 5.4 19.5 8.9S17 14.8 13.2 14.8H10.6V21H7V3Zm3.6 3.2v5.4h2.4c1.8 0 2.9-1 2.9-2.7s-1.1-2.7-2.9-2.7h-2.4Z"/></svg></a>
+    </div>
+    <ol>
+      <li>앵라이프를 더! 즐겁게 지낼 수 있는 다양한 콘텐츠를 올립니다.</li>
+      <li>모든 페이지는 클로드를 사용해서 제작합니다.</li>
+      <li>모바일에서도 볼 수 있지만, PC에서 보는 것을 추천합니다.</li>
+      <li>문제가 되지 않는 선에서 자유롭고 즐겁게 사용해 주세요~!</li>
+    </ol>
+  </section>
+  <div class="bar">
+    <div class="chips" role="group" aria-label="분류">
+      <button class="chip" id="f-all" data-f="all" aria-pressed="true">전체 <b></b></button>
+      <button class="chip" id="f-ooc" data-f="ooc" aria-pressed="false">OOC <b></b></button>
+      <button class="chip" id="f-pair" data-f="pair" aria-pressed="false">페어틀 <b></b></button>
+      <button class="chip" id="f-tool" data-f="tool" aria-pressed="false">도구함 <b></b></button>
+    </div>
+  </div>
+
+  <ol class="list" id="list"></ol>
+</main>
+
+<script>
+const items = [
+  {t:"ICE MELT", g:"❄️", d:"얼음 아래 잠들어 있던 마음을 깨우세요", c:"ooc", n:2, url:"https://yuuuulll35.github.io/ice-malt/"},
+  {t:"LOVE SCAN", g:"🩻", d:"애정을 촬영하는 감정 방사선 촬영실", c:"ooc", n:3, url:"https://yuuuulll35.github.io/love-scan/"},
+  {t:"HOPELESS ROMANTIC", g:"💯", d:"NPC의 사랑꾼 자가진단표", c:"ooc", n:2, url:"https://yuuuulll35.github.io/hopeless-romantic/"},
+  {t:"LOVE POTION MAKER", g:"🐈‍⬛", d:"NPC의 호감도를 해부해 보자!", c:"ooc", n:3, url:"https://yuuuulll35.github.io/heartbrew-lab/"},
+  {t:"LOVE DIVE!", g:"💘", d:"두 사람의 사랑은 얼마나 무거울까?", c:"ooc", n:1, url:"https://yuuuulll35.github.io/love-dive/"},
+  {t:"BLANK", g:"📝", d:"대화 로그 HTML 변환 편집기", c:"tool", url:"https://yuuuulll35.github.io/blank/"},
+  {t:"DAILY LIFE SIMULATOR", g:"🏠", d:"두 사람의 휴일 시뮬레이터", c:"ooc", n:4, url:"https://yuuuulll35.github.io/daily-life-simulator/"},
+  {t:"SLEEVE", g:"🎧", d:"서사를 곁들이는 플레이리스트 페어틀", c:"pair", url:"https://paly-list.pages.dev/"},
+  {t:"MIND ARCHIVE", g:"🧠", d:"두 사람의 뇌 구조를 확인하는 열람실", c:"ooc", n:3, url:"https://yuuuulll35.github.io/mind-archive/"},
+  {t:"RELATION ANATOMY", g:"🔬", d:"캐릭터의 관계 역학 판정 페어틀", c:"ooc", n:8, url:"https://yuuuulll35.github.io/relation-anatomy/"},
+  {t:"PAIR LOG MAKER", g:"💾", d:"레트로 윈도우 UI 스타일의 카드 메이커", c:"pair", url:"https://yuuuulll35.github.io/pair-log-maker/"},
+  {t:"MAIN TWEET MAKER", g:"🖼️", d:"프로필·계정 소개용 메인 트윗 이미지 메이커", c:"pair", url:"https://yuuuulll35.github.io/shape-ui/"},
+];
+const label = {ooc:"OOC", pair:"페어틀", tool:"도구함"};
+let filter = "all";
+const $list = document.getElementById("list");
+
+document.querySelectorAll(".chip").forEach(b=>{
+  const f=b.dataset.f;
+  b.querySelector("b").textContent = f==="all" ? items.length : items.filter(i=>i.c===f).length;
+  b.addEventListener("click",()=>{
+    filter=f;
+    document.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed", x===b));
+    render();
+  });
+});
+
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function render(){
+  const shown=items.filter(i=>filter==="all"||i.c===filter);
+  $list.innerHTML = shown.length ? shown.map((i,n)=>`
+    <li style="--i:${n}"><a class="card ${i.c}" href="${i.url}" target="_blank" rel="noopener">
+      <span class="head">
+        <span class="glyph" aria-hidden="true">${i.g}</span>
+        <span class="tag ${i.c}">${label[i.c]}${i.n ? `<span class="n">${i.n}개</span>` : ""}</span>
+      </span>
+      <span class="body">
+        <span class="name">${esc(i.t)}</span>
+        <span class="desc">${esc(i.d)}</span>
+      </span>
+    </a></li>`).join("") : `<li class="empty">찾는 작품이 없어요.</li>`;
+}
+render();
+</script>
+</body>
+</html>
